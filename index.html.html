@@ -1,0 +1,251 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>신지우 | VR/AR 포트폴리오</title>
+  <meta name="description" content="남서울대학교 가상현실학과 신지우 — VR/AR 콘텐츠 기획/개발 포트폴리오">
+  <meta property="og:title" content="신지우 | VR/AR 포트폴리오">
+  <meta property="og:description" content="언리얼·유니티 기반 VR/AR 콘텐츠 기획/개발">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="cover.jpg">
+
+  <!-- 폰트 -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+KR:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0a0f1c; --panel:#121a2f;
+      --ink:#e9ecf8; --muted:#a7b0c8;
+      --brand:#7c3aed; --accent:#22d3ee;
+      --line:rgba(255,255,255,.10);
+
+      --fs-2xl: clamp(2.2rem, 3vw + 1rem, 3.2rem);
+      --fs-xl: clamp(1.6rem, 1.4vw + 1rem, 2.2rem);
+      --fs-lg: clamp(1.1rem, .6vw + .9rem, 1.25rem);
+      --fs-md: 1rem;
+
+      --radius-card: 18px; --radius-chip: 12px;
+      --container: 1120px; --section-pad: clamp(48px, 7vw, 88px); --gap: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{
+      font-family:"Noto Sans KR","Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Apple SD Gothic Neo,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji;
+      color:var(--ink);
+      background: radial-gradient(1200px 800px at 80% -10%, rgba(124,58,237,.22), transparent 60%), var(--bg);
+      line-height:1.6; letter-spacing:.01em; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    img{display:block;max-width:100%;border-radius:12px}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--container);margin:0 auto;padding:0 20px}
+
+    header{position:sticky;top:0;z-index:10;background:rgba(10,15,28,.55);backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid var(--line)}
+    nav{height:68px;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-weight:800;letter-spacing:.2px;font-size:1.05rem}
+    nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0}
+    nav a{opacity:.92} nav a:hover{opacity:1;color:var(--accent)}
+
+    .btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--brand),#4f46e5);
+      border:1px solid rgba(255,255,255,.12);color:#fff;padding:12px 18px;border-radius:14px;font-weight:700}
+    .btn.ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.015));border:1px solid var(--line);border-radius:var(--radius-card);padding:20px;transition:transform .2s ease, box-shadow .2s ease}
+    .card:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,.25)}
+    .pill{font-size:.82rem;color:var(--muted);border:1px solid var(--line);padding:6px 10px;border-radius:999px}
+    .badge{display:inline-block;padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:.82rem}
+
+    .hero{padding:calc(var(--section-pad) + 10px) 0 var(--section-pad);border-bottom:1px solid var(--line)}
+    .grid-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+    h1{font-size:var(--fs-2xl);line-height:1.15;margin:10px 0 14px;letter-spacing:-.01em}
+    .lead{font-size:var(--fs-lg);color:var(--muted);max-width:58ch}
+    .tagline{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .tagline .pill{background:rgba(34,211,238,.06);border-color:rgba(34,211,238,.25)}
+    .cta{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+
+    section{padding:var(--section-pad) 0;border-bottom:1px solid var(--line)}
+    h2{font-size:var(--fs-xl);margin:0 0 14px;letter-spacing:-.01em}
+    .k{color:var(--accent)}
+
+    .row-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+    .about li{color:var(--muted)}
+
+    .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .skill{display:flex;align-items:center;justify-content:center;text-align:center;min-height:54px;padding:0 12px;font-weight:700;
+      border:1px dashed var(--line);border-radius:var(--radius-chip);background:rgba(255,255,255,.02)}
+
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gap)}
+    .proj{display:flex;flex-direction:column;gap:10px}
+    .proj h3{margin:0;font-size:1.05rem;letter-spacing:.01em}
+    .project-media{border-radius:12px;aspect-ratio:16/9;width:100%;height:auto;object-fit:cover;background:#000}
+
+    form label{display:block;margin-bottom:10px;font-size:.92rem}
+    input,textarea{width:100%;margin-top:6px;padding:12px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--ink);font:inherit}
+    textarea{resize:vertical}
+    footer{padding:28px 0;color:var(--muted)}
+
+    @media (max-width: 960px){
+      .grid-hero{grid-template-columns:1fr}
+      .projects{grid-template-columns:1fr}
+      .skills-grid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 560px){
+      :root{--section-pad:44px}
+      .skills-grid{grid-template-columns:1fr}
+      nav{height:64px}
+    }
+    :focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:10px}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap">
+      <a class="logo" href="#top" aria-label="신지우 홈">Ji-Woo Shin</a>
+      <ul>
+        <li><a href="#about">소개</a></li>
+        <li><a href="#skills">역량</a></li>
+        <li><a href="#projects">프로젝트</a></li>
+        <li><a href="#contact">연락처</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top" class="wrap">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="grid-hero">
+        <div>
+          <span class="badge">VR/AR Creator · 남서울대학교 가상현실학과</span>
+          <h1>안녕하세요, <span class="k">신지우</span>입니다.<br>VR/AR 콘텐츠를 기획하고 개발합니다.</h1>
+          <p class="lead">언리얼 엔진과 유니티를 주로 사용하며, 블루프린트와 C#을 공부하고 있습니다. 사용자 경험 중심의 인터랙션과 몰입형 UX에 관심이 많습니다.</p>
+          <div class="tagline" aria-label="기술 태그">
+            <span class="pill">Unreal Engine</span><span class="pill">Unity</span><span class="pill">Blueprints</span><span class="pill">C#</span><span class="pill">VR · AR · MR</span>
+          </div>
+          <div class="cta">
+            <a class="btn" href="#projects">프로젝트 보기</a>
+            <a class="btn ghost" href="#contact">연락하기</a>
+          </div>
+        </div>
+        <div class="card" style="height:100%">
+          <img src="image/Shinjiwoo.jpg" alt="신지우 프로필" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about" aria-labelledby="about-title">
+      <h2 id="about-title">소개</h2>
+      <div class="row-2">
+        <div class="card">
+          <p style="margin-top:0">남서울대학교 가상현실학과에서 VR/AR 콘텐츠를 기획하고 개발하고 있습니다. 실험적인 인터랙션, 최적화된 퍼포먼스, 직관적인 UX를 중요하게 생각합니다.</p>
+          <ul style="margin:0;line-height:1.9">
+            <li>전공: 가상현실학과 (VR/AR)</li>
+            <li>관심사: 실감형 인터랙션, HMI, 시뮬레이션, 몰입형 스토리텔링</li>
+            <li>목표: 사용자에게 의미 있는 경험을 주는 XR 콘텐츠 제작</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="margin:0 0 8px;font-size:1.02rem">현재 공부 중</h3>
+          <ul style="margin:0;color:var(--muted);line-height:1.9">
+            <li>언리얼 블루프린트 비주얼 스크립팅</li>
+            <li>유니티 C# 플레이 시스템 & 에디터 확장</li>
+            <li>VR 상호작용(Grab/Teleport/Locomotion) 패턴</li>
+            <li>렌더링 최적화(LOD/URP/나이아가라 등)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" aria-labelledby="skills-title">
+      <h2 id="skills-title">역량</h2>
+      <div class="card" style="margin-bottom:12px">
+        <h3 style="margin:0 0 10px;font-size:1.02rem">엔진</h3>
+        <div class="skills-grid">
+          <div class="skill">Unreal Engine</div>
+          <div class="skill">Unity</div>
+          <div class="skill">VR · AR · MR</div>
+          <div class="skill">Cinematics / Sequencer</div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:12px">
+        <h3 style="margin:0 0 10px;font-size:1.02rem">프로그래밍</h3>
+        <div class="skills-grid">
+          <div class="skill">Blueprints</div>
+          <div class="skill">C#</div>
+          <div class="skill">C++</div>
+          <div class="skill">Shader 기초</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="margin:0 0 10px;font-size:1.02rem">활동 · 수료 · 수상</h3>
+        <div class="skills-grid">
+          <div class="skill">Unity 실감형 컨텐츠 수료</div>
+          <div class="skill">메타버스 경진대회 1차 합격</div>
+          <div class="skill">충남 컨텐츠 아카데미 VP 수료</div>
+          <div class="skill">가상현실학과 전시회 수상</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title">프로젝트</h2>
+      <div class="projects">
+
+        <a href="https://www.youtube.com/shorts/SPevowQVfV4" target="_blank" rel="noopener" class="card proj">
+          <img class="project-media" src="image/404.png" alt="VR Interaction Lab 미리보기">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <h3>Exit Zone : Fire</h3>
+            <span class="pill">Unreal · Blueprints</span>
+          </div>
+          <p style="color:var(--muted);margin:6px 0 0">화재가 일어난 건물에서 무사히 탈출하는 VR과 AR을 섞은 MR 언리얼 교육용 컨텐츠.</p>
+        </a>
+
+        <a href="https://youtu.be/FcMZDs63dms" target="_blank" rel="noopener" class="card proj">
+          <img class="project-media" src="image/DarkWave.jpg" alt="AR Utility Toolkit 미리보기">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <h3>Dark Wave</h3>
+            <span class="pill">Unity · C#</span>
+          </div>
+          <p style="color:var(--muted);margin:6px 0 0">마계의 적군들의 습격을 피해 끝까지 살아남아야하는 유니티 뱀서라이크 게임.</p>
+        </a>
+
+      </div>
+      <p style="color:var(--muted);margin-top:10px">이미지를 누르면 Youtube 링크로 넘어갑니다.</p>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">연락처</h2>
+      <div class="row-2">
+        <div class="card">
+          <ul style="color:var(--muted);line-height:1.9;margin:0">
+            <li>이메일: <a href="justine02a@naver.com">justine02a@naver.com</a></li>
+            <li>전화번호: <a href="01058703921" target="_blank" rel="noopener">010-5870-3921</a></li>
+          </ul>
+        </div>
+        <form class="card" onsubmit="event.preventDefault(); alert('메시지가 전송된 것으로 처리되었습니다. 실제 전송 로직은 별도의 백엔드가 필요합니다.');">
+          <h3 style="margin:0 0 10px;font-size:1.02rem">메시지 보내기</h3>
+          <label>이름<input required aria-label="이름"></label>
+          <label>이메일<input type="email" required aria-label="이메일"></label>
+          <label>내용<textarea required aria-label="내용" rows="4"></textarea></label>
+          <button class="btn" type="submit">보내기</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
+      <small>© <span id="y"></span> Ji-Woo Shin. All rights reserved.</small>
+      <small>Built with Unreal · Unity · Blueprints · C#</small>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
